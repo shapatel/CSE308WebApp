@@ -5,18 +5,19 @@
  */
 package com.example.piece;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
-import java.util.List;
 import java.util.Map;
 
 /**
  *
  * @author Thomas
  */
+
 public class GoodnessCalculator {
     Collection<Constraint> constraints;
-    List<Measure> measures;
+    ArrayList<Measure> measures;
     Statistics stateStats;
     Map<String,Integer> weights;
     private double goodness;
@@ -46,8 +47,11 @@ public class GoodnessCalculator {
         stateStats = s;
     }
 
-    public void setMeasures(List<Measure> m) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void setMeasures(ArrayList<Measure> m) {
+        measures = m;
+    }
+    public void setConstraints(Collection<Constraint> constr){
+        constraints = constr;
     }
     
 }

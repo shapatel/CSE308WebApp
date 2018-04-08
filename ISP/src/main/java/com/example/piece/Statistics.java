@@ -67,10 +67,10 @@ public class Statistics {
 	
 	//Methods
 	public void appendStatistics(Statistics s) {
-		
+		population+=s.getPopulation();
 	}
 	public void removeStatistics(Statistics s) {
-		
+		population-=s.getPopulation();
 	}
 	
 	

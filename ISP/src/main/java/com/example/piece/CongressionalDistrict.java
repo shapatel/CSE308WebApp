@@ -77,7 +77,10 @@ public class CongressionalDistrict {
 	public boolean verify() {
 		return false;
 	}
-	
+	public void setStatisticsByYear(HashMap<Integer,Statistics> ser)
+        {
+            stats = ser;
+        }
 	public Statistics getStatisticsByYear(int year) {
 		return stats.get(year);
 	}
@@ -88,7 +91,8 @@ public class CongressionalDistrict {
 			if(precinct.isBorder()) {
 				for(Precinct p : precinct.getAdjacentPrecincts()) {
 					if(precinct.getCongressionalDistrictId()!=p.getCongressionalDistrictId()) {
-						outerBorder.add(p);
+                                                if(!outerBorder.contains(p))
+                                                    outerBorder.add(p);
 					}
 				}
 			}
@@ -99,10 +103,46 @@ public class CongressionalDistrict {
 	//Need to manage removal of statistics from the district
 	public void removePrecinct(Precinct p) {
 		precincts.get(p.getYear()).remove(p);
+                getStatisticsByYear(p.getYear()).removeStatistics(p.getStats());
+                
+                ArrayList<Precinct> ps = p.getAdjacentPrecincts();
+                for(int i=0;i<ps.size();i++){
+                    ArrayList<Precinct> ap = ps.get(i).getAdjacentPrecincts();
+                    boolean borderbool = false;
+                    for(int j = 0; j< ap.size();j++){
+                        if(ap.get(j).getCongressionalDistrictId()!=id)
+                        {
+                            borderbool = true;
+                            ap.get(j).setBorder(borderbool);
+                            j = ap.size()+1;
+                            break;
+                        }
+                        else{
+                        ap.get(j).setBorder(borderbool);
+                        }
+                    }
+                }
 	}
 	//Need to manage addition of statistics from the district
 	public void addPrecinct(Precinct p) {
 		precincts.get(p.getYear()).add(p);
+                getStatisticsByYear(p.getYear()).appendStatistics(p.getStats());
+                p.setCongressionalDistrictId(id);
+                ArrayList<Precinct> ps = p.getAdjacentPrecincts();
+                for(int i=0;i<ps.size();i++){
+                    ArrayList<Precinct> ap = ps.get(i).getAdjacentPrecincts();
+                    boolean borderbool = false;
+                    for(int j = 0; j< ap.size();j++){
+                        if(ap.get(j).getCongressionalDistrictId()!=id)
+                        {
+                            borderbool = true;
+                            ap.get(j).setBorder(borderbool);
+                            j = ap.size()+1;
+                            break;
+                        }else{
+                        ap.get(j).setBorder(borderbool);}
+                    }
+                }
 	}
 
 	public ArrayList<Precinct> getPrecinctsByYear(int year){

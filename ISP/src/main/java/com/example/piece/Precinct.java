@@ -57,7 +57,7 @@ public class Precinct {
 	public Statistics getStats() {
 		return stats;
 	}
-	public void setStats(Statistics stats) {
+	public void setStatistics(Statistics stats) {
 		this.stats = stats;
 	}
 	

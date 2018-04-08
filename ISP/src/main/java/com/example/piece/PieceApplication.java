@@ -29,7 +29,6 @@ public class PieceApplication {
 
 		};
 	}
-
 	public static void main(String[] args) {
 		SpringApplication.run(PieceApplication.class, args);
 	}

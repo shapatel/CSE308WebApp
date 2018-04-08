@@ -4,7 +4,7 @@
     Author     : Thomas
 --%>
 
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
 
 <%@taglib prefix="f" uri="http://java.sun.com/jsf/core"%>
 <%@taglib prefix="h" uri="http://java.sun.com/jsf/html"%>
@@ -19,7 +19,7 @@
         </head>
         <body>
             <h1><h:outputText value="Hello World!"/></h1>
-            <p th:text="'Hello, ' + ${name} + '!'" />
+            
         </body>
     </html>
 </f:view>

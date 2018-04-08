@@ -11,13 +11,22 @@ package com.example.piece;
  */
 public class PopulationConstraint extends Constraint {
 
-    Statistics s;
+    private Statistics s;
+    private final double deviation = .25;
     public PopulationConstraint(Statistics s1){
         s = s1;
     }
     @Override
     public double calculateConstraint(Statistics s, CongressionalDistrict cd, int year) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        long  p = s.getPopulation()/9;
+        long h = cd.getStatisticsByYear(year).getPopulation();
+        if((h<(long)(p*(1.0-deviation))) || (h > (long)(p*(1.0+deviation)))){
+            double j = Math.abs(h-p);
+            return j;
+        }
+        return 0;
     }
-    
+    public void setStatistics(Statistics stats){
+        s = stats;
+    }
 }

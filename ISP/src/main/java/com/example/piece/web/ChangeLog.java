@@ -14,13 +14,13 @@ import java.util.ArrayList;
  * @author Thomas
  */
 class ChangeLog {
-    ArrayList<ChangeEntry> changes = new ArrayList<ChangeEntry>();
+    public ArrayList<ChangeEntry> changes = new ArrayList<ChangeEntry>();
     
     public void clear(){
         changes.clear();
     }
 
     void addEntry(Precinct p, CongressionalDistrict cD1, CongressionalDistrict cD2, double d) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        changes.add(new ChangeEntry(p,cD1,cD2));
     }
 }
